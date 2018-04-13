@@ -5,32 +5,18 @@ var HomePage = {
   data: function() {
     return {
       message: "Welcome to Vue.js!",
-      people: [
-        {
-          name: "Bob",
-          bio: "Small batch salvia Marfa chillwave delectus, odio forage art party laborum street art minim fixie locavore hoodie mollit.",
-          bioVisible: true
-        },
-        {
-          name: "Alice",
-          bio: "Tattooed letterpress gluten-free ugh, adipisicing scenester church-key gentrify tousled gastropub pour-over Shoreditch asymmetrical lomo High Life.",
-          bioVisible: true
-        },
-        {
-          name: "Tibor",
-          bio: "Incididunt photo booth ethical reprehenderit adipisicing. Echo Park readymade Bushwick distillery Tonx. +1 semiotics qui duis literally.",
-          bioVisible: true
-        },
-        {
-          name: "Živa",
-          bio: "Excepteur shabby chic semiotics Marfa, quinoa try-hard polaroid pariatur banh mi selfies incididunt brunch trust fund. Ethical dolor PBR&B Tumblr.",
-          bioVisible: true
-        }
-      ],
+      people: [],
       newPerson: {name: "", bio: "", bioVisible: true}
     };
   },
-  created: function() {},
+  created: function() {
+    // created runs when the component is created
+    // console.log('outside this');
+    // console.log(this);
+    axios.get("http://localhost:3000/v1/people").then(function(response) {
+      this.people = response.data;
+    }.bind(this));
+  },
   methods: {
     addPerson: function() {
       // to add a new person, add the newPerson object to the people array

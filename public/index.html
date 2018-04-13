@@ -25,7 +25,8 @@
     <h1>{{ message }}</h1>
     <div v-for="person in people">
       <h4 v-on:click="toggleBioVisible(person)">{{ person.name }}</h4>
-      <p v-bind:class="{strike: person.bioVisible}">{{ person.bio }}</p>
+      <p v-bind:class="{strike: !person.bioVisible}">{{ person.bio }}</p>
+      <p>{{ person.bioVisible }}</p>
       <button v-on:click="removePerson(person)">Remove Person</button>
       <hr>
     </div>
