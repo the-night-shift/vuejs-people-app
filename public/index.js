@@ -19,9 +19,19 @@ var HomePage = {
   },
   methods: {
     addPerson: function() {
+      // Unirest.post("/v1/people", parameters: {name: "Joey", bio: "something else"})
+      // add a new person to the db
+      var params = {
+        inputName: this.newPerson.name,
+        inputBio: this.newPerson.bio
+      };
+      axios.post("/v1/people", params).then(function(response) {
+        this.people.push(response.data);
+        this.newPerson = {name: "", bio: "", bioVisible: true};
+      }.bind(this));
+      // make an http request to the create action of my people controller
+      // with the correct data
       // to add a new person, add the newPerson object to the people array
-      this.people.push(this.newPerson);
-      this.newPerson = {name: "", bio: "", bioVisible: true};
     },
     removePerson: function(thePerson) {
       // find the index of this particular person
