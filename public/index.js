@@ -1,5 +1,22 @@
 /* global Vue, VueRouter, axios */
 
+var SamplePage = {
+  template: "#sample-page",
+  data: function() {
+    return {
+      message: "Welcome to Vue.js!",
+    };
+  },
+  created: function() {
+    // created runs when the component is created
+    // console.log('outside this');
+
+  },
+  methods: {},
+  computed: {}
+};
+
+
 var HomePage = {
   template: "#home-page",
   data: function() {
@@ -58,7 +75,10 @@ var HomePage = {
 };
 
 var router = new VueRouter({
-  routes: [{ path: "/", component: HomePage }],
+  routes: [
+    { path: "/", component: HomePage },
+    { path: "/sample", component: SamplePage }
+  ],
   scrollBehavior: function(to, from, savedPosition) {
     return { x: 0, y: 0 };
   }
