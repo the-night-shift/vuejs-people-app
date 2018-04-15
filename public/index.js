@@ -6,7 +6,8 @@ var HomePage = {
     return {
       message: "Welcome to Vue.js!",
       people: [],
-      newPerson: {name: "", bio: "", bioVisible: true}
+      newPerson: {name: "", bio: "", bioVisible: true},
+      errors: []
     };
   },
   created: function() {
@@ -28,6 +29,10 @@ var HomePage = {
       axios.post("/v1/people", params).then(function(response) {
         this.people.push(response.data);
         this.newPerson = {name: "", bio: "", bioVisible: true};
+        this.errors = [];
+      }.bind(this)).catch(function(error) {
+        console.log(error.response.data.errors);
+        this.errors = error.response.data.errors;
       }.bind(this));
       // make an http request to the create action of my people controller
       // with the correct data

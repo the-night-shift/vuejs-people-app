@@ -21,6 +21,7 @@
 <template id="home-page">
   <div class="vue-component">
 
+
     <h2># of people: {{ people.length }}</h2>
     <h1>{{ message }}</h1>
     <div v-for="person in people">
@@ -30,6 +31,9 @@
       <button v-on:click="removePerson(person)">Remove Person</button>
       <hr>
     </div>
+    <ul>
+      <li v-for="error in errors">{{error}}</li>
+    </ul>
     <p>name<input type="text" v-model="newPerson.name"></p>
     <p>bio<input type="text" v-model="newPerson.bio"></p>
     <button v-on:click="addPerson()">Add Person</button>
