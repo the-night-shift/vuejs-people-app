@@ -24,7 +24,8 @@ var HomePage = {
       message: "Welcome to Vue.js!",
       people: [],
       newPerson: {name: "", bio: "", bioVisible: true},
-      errors: []
+      errors: [],
+      searchTerm: ""
     };
   },
   created: function() {
@@ -72,7 +73,7 @@ var HomePage = {
     },
     isValidPerson: function(inputPerson) {
       console.log(this.$parent.searchTerm);
-      return inputPerson.name.includes(this.$parent.searchTerm);
+      return inputPerson.name.includes(this.searchTerm);
     }
   },
   computed: {}
@@ -90,10 +91,5 @@ var router = new VueRouter({
 
 var app = new Vue({
   el: "#vue-app",
-  router: router,
-  data: function() {
-    return {
-      searchTerm: ""
-    };
-  }
+  router: router
 });
