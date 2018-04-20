@@ -69,6 +69,10 @@ var HomePage = {
       // }
       thePerson.bioVisible = !thePerson.bioVisible;
       // console.log(thePerson);
+    },
+    isValidPerson: function(inputPerson) {
+      console.log(this.$parent.searchTerm);
+      return inputPerson.name.includes(this.$parent.searchTerm);
     }
   },
   computed: {}
@@ -86,5 +90,10 @@ var router = new VueRouter({
 
 var app = new Vue({
   el: "#vue-app",
-  router: router
+  router: router,
+  data: function() {
+    return {
+      searchTerm: ""
+    };
+  }
 });
