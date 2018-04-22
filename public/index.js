@@ -26,7 +26,8 @@ var HomePage = {
       newPerson: {name: "", bio: "", bioVisible: true},
       errors: [],
       searchName: "",
-      searchBio: ""
+      searchBio: "",
+      sortAttribute: "name"
     };
   },
   created: function() {
@@ -77,6 +78,9 @@ var HomePage = {
       var validBio = inputPerson.bio.toLowerCase().includes(this.searchBio.toLowerCase());
       var validName = inputPerson.name.toLowerCase().includes(this.searchName.toLowerCase());
       return validBio && validName;
+    },
+    setSortAttribute: function(inputAttribute) {
+      this.sortAttribute = inputAttribute;
     }
   },
   computed: {
@@ -84,10 +88,10 @@ var HomePage = {
       // write some logic in here ...
       // return some sort of value
       return this.people.sort(function(person1, person2) {
-        var person1Name = person1.name.toLowerCase();
-        var person2Name = person2.name.toLowerCase();
+        var person1Name = person1[this.sortAttribute].toLowerCase();
+        var person2Name = person2[this.sortAttribute].toLowerCase();
         return person1Name.localeCompare(person2Name);
-      });
+      }.bind(this));
     }
   }
 };
