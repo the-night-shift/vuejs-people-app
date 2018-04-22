@@ -28,13 +28,15 @@
       <option v-for="person in people">{{ person.name }}</option>
     </datalist>
     <p>Search here for Bio:<input type="text" v-model="searchBio"></p>
-    <div v-for="person in people" v-if="isValidPerson(person)">
-      <h4 v-on:click="toggleBioVisible(person)">{{ person.name }}</h4>
-      <p v-bind:class="{strike: !person.bioVisible}">{{ person.bio }}</p>
-      <p>{{ person.bioVisible }}</p>
-      <button v-on:click="removePerson(person)">Remove Person</button>
-      <hr>
-    </div>
+    <transition-group name="slide-right">
+      <div v-for="person in people" v-if="isValidPerson(person)" v-bind:key="person.id">
+        <h4 v-on:click="toggleBioVisible(person)">{{ person.name }}</h4>
+        <p v-bind:class="{strike: !person.bioVisible}">{{ person.bio }}</p>
+        <p>{{ person.bioVisible }}</p>
+        <button v-on:click="removePerson(person)">Remove Person</button>
+        <hr>
+      </div>
+    </transition-group>
     <ul>
       <li v-for="error in errors">{{error}}</li>
     </ul>
