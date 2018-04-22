@@ -29,7 +29,7 @@
     </datalist>
     <p>Search here for Bio:<input type="text" v-model="searchBio"></p>
     <transition-group name="slide-right">
-      <div v-for="person in people" v-if="isValidPerson(person)" v-bind:key="person.id">
+      <div v-for="person in sortedPeople" v-if="isValidPerson(person)" v-bind:key="person.id">
         <h4 v-on:click="toggleBioVisible(person)">{{ person.name }}</h4>
         <p v-bind:class="{strike: !person.bioVisible}">{{ person.bio }}</p>
         <p>{{ person.bioVisible }}</p>

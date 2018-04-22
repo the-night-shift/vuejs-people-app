@@ -79,7 +79,17 @@ var HomePage = {
       return validBio && validName;
     }
   },
-  computed: {}
+  computed: {
+    sortedPeople: function() {
+      // write some logic in here ...
+      // return some sort of value
+      return this.people.sort(function(person1, person2) {
+        var person1Name = person1.name.toLowerCase();
+        var person2Name = person2.name.toLowerCase();
+        return person1Name.localeCompare(person2Name);
+      });
+    }
+  }
 };
 
 var router = new VueRouter({
