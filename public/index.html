@@ -6,6 +6,8 @@
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
+
   <script src="index.js" defer></script>
   <link rel="stylesheet" href="index.css">
 </head>
@@ -14,12 +16,15 @@
     <router-view></router-view>
 
   </div>
+
+
 </body>
 </html>
 
 <template id="home-page">
   <div class="vue-component">
-
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
 
     <h2># of people: {{ people.length }}</h2>
     <h1>{{ message }}</h1>
