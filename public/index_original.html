@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My App</title>
+
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div id="vue-app">
+    <router-view></router-view>
+
+  </div>
+</body>
+</html>
+
+<template id="home-page">
+  <div class="vue-component">
+    <div>
+      <button v-on:click="changeSortAttribute('name')">Sort by Name</button>
+      <button v-on:click="changeSortAttribute('bio')">Sort by Bio</button>
+    </div>
+
+    <h2># of people: {{ people.length }}</h2>
+    <h1>{{ message }}</h1>
+    <p>Search Name here:<input type="text" list="names" v-model="searchName"></p>
+    <datalist id="names">
+      <option v-for="person in people">{{ person.name }}</option>
+    </datalist>
+    <p>Search Bio here:<input type="text" v-model="searchBio"></p>
+    <transition-group name="slide-left">
+      <div v-for="person in sortedPeople" v-if="isValidPerson(person)" v-bind:key="person.id">
+        <h4 v-on:click="toggleBioVisible(person)">{{ person.name }}</h4>
+        <p v-bind:class="{strike: !person.bioVisible}">{{ person.bio }}</p>
+        <p>{{ person.bioVisible }}</p>
+        <button v-on:click="removePerson(person)">Remove Person</button>
+        <hr>
+      </div>
+    </transition-group>
+    <ul>
+      <li v-for="error in errors">{{error}}</li>
+    </ul>
+    <p>name<input type="text" v-model="newPerson.name"></p>
+    <p>bio<input type="text" v-model="newPerson.bio"></p>
+    <button v-on:click="addPerson()">Add Person</button>
+
+  </div>
+</template>
+
+
+
+<template id="sample-page">
+  <div class="vue-component">
+    I am on the sample page
+
+  </div>
+</template>
+
+
