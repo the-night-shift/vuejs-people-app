@@ -25,7 +25,7 @@ var HomePage = {
       people: [],
       newPerson: {name: "", bio: "", bioVisible: true},
       errors: [],
-      searchTerm: "",
+      searchName: "",
       searchBio: ""
     };
   },
@@ -75,7 +75,7 @@ var HomePage = {
     isValidPerson: function(inputPerson) {
       console.log('running isValidPerson');
       var validBio = inputPerson.bio.toLowerCase().includes(this.searchBio.toLowerCase());
-      var validName = inputPerson.name.toLowerCase().includes(this.searchTerm.toLowerCase());
+      var validName = inputPerson.name.toLowerCase().includes(this.searchName.toLowerCase());
       return validBio && validName;
     }
   },
