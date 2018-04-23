@@ -33,3 +33,9 @@
   transform: translateX(-10px);
   opacity: 0;
 }
+
+
+#map {
+        height: 400px;
+        width: 100%;
+       }
