@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My App</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
+
+  <script src="index.js" defer></script>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div id="vue-app">
+    <router-view></router-view>
+
+  </div>
+
+
+</body>
+</html>
+
+<template id="home-page">
+  <div class="vue-component">
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+
+    <h2># of people: {{ people.length }}</h2>
+    <h1>{{ message }}</h1>
+    <p>Search here:<input type="text" v-model="searchName" list="names"></p>
+    <datalist id="names">
+      <option v-for="person in people">{{ person.name }}</option>
+    </datalist>
+
+    <p>Search here for Bio:<input type="text" v-model="searchBio"></p>
+    <div>
+      <button v-on:click="setSortAttribute('bio')">sort by bio</button>
+      <button v-on:click="setSortAttribute('name')">sort by name</button>
+    </div>
+    <transition-group name="slide-right">
+      <div v-for="person in sortedPeople" v-if="isValidPerson(person)" v-bind:key="person.id">
+        <h4 v-on:click="toggleBioVisible(person)">{{ person.name }}</h4>
+        <p v-bind:class="{strike: !person.bioVisible}">{{ person.bio }}</p>
+        <p>{{ person.bioVisible }}</p>
+        <button v-on:click="removePerson(person)">Remove Person</button>
+        <hr>
+      </div>
+    </transition-group>
+    <ul>
+      <li v-for="error in errors">{{error}}</li>
+    </ul>
+    <p>name<input type="text" v-model="newPerson.name"></p>
+    <p>bio<input type="text" v-model="newPerson.bio"></p>
+    <button v-on:click="addPerson()">Add Person</button>
+
+  </div>
+</template>
+
+
+
+<template id="sample-page">
+  <div class="vue-component">
+    I am on the sample page
+
+  </div>
+</template>
+
+
