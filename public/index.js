@@ -1,5 +1,6 @@
 /* global Vue, VueRouter, axios */
 
+
 var SamplePage = {
   template: "#sample-page",
   data: function() {
@@ -89,6 +90,24 @@ var HomePage = {
       //   this.sortAsc = true;
       // }
       this.sortAsc = !this.sortAsc;
+    },
+    setMarker: function(thePlace, theMap) {
+      console.log('in the loop');
+      var contentString = thePlace.description;
+
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+
+      var marker = new google.maps.Marker({
+        position: {lat: thePlace.latitude, lng: thePlace.longitude},
+        map: theMap,
+        title: 'Uluru (Ayers Rock)'
+      });
+
+      marker.addListener('click', function() {
+        infowindow.open(theMap, marker);
+      });
     }
   },
   computed: {
@@ -112,26 +131,17 @@ var HomePage = {
       zoom: 4,
       center: uluru
     });
-    var markerDos = new google.maps.Marker({
-      position: {lat: 43.363, lng: -90.044},
-      map: map
-    });
 
-  var contentString = 'hey';
+    var places = [
+      {latitude: 33.3, longitude: 44.4, description: "somethingsomething"},
+      {latitude: 80.3, longitude: -44.4, description: "second marker"},
+      {latitude: -33.3, longitude: 144.4, description: "third marker"}
+    ];
 
-  var infowindow = new google.maps.InfoWindow({
-    content: contentString
-  });
+    for (var i = 0; i < places.length; i++) {
+      this.setMarker(places[i], map);
+    }
 
-  var marker = new google.maps.Marker({
-    position: uluru,
-    map: map,
-    title: 'Uluru (Ayers Rock)'
-  });
-
-  marker.addListener('click', function() {
-    infowindow.open(map, marker);
-  });
 
   }
 };
