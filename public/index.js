@@ -36,7 +36,7 @@ var HomePage = {
     // created runs when the component is created
     // console.log('outside this');
     // console.log(this);
-    axios.get("http://localhost:3000/v1/people").then(function(response) {
+    axios.get("/v1/people").then(function(response) {
       this.people = response.data;
     }.bind(this));
   },
